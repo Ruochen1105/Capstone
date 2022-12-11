@@ -239,7 +239,7 @@ class AttentionResNet(nn.Module):
         self.layer4 = self._make_layer(block, width * width_factors[3], layers[3], stride=2,
                                        dilate=replace_stride_with_dilation[2])
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        self.mlp = nn.Sequential(nn.Linear(512, 100), nn.ReLU(), nn.Linear(100, 512), nn.Sigmoid()) # width of the hidden layer is 100, adjustable
+        self.mlp = nn.Sequential(nn.Linear(512, 100), nn.ReLU(), nn.Linear(100, 512), nn.Sigmoid())
         self.fc = nn.Linear(width_factors[-1] * width * block.expansion, num_classes)
 
         for m in self.modules():
@@ -339,7 +339,7 @@ class AttentionedResNet(nn.Module):
         self.layer4 = self._make_layer(block, width * width_factors[3], layers[3], stride=2,
                                        dilate=replace_stride_with_dilation[2])
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        self.mlp = nn.Sequential(nn.Linear(512, 100), nn.ReLU(), nn.Linear(100, 512), nn.Sigmoid()) # width of the hidden layer is 100, adjustable
+        self.mlp = nn.Sequential(nn.Linear(512, 100), nn.ReLU(), nn.Linear(100, 512), nn.Sigmoid())
         self.fc = nn.Linear(width_factors[-1] * width * block.expansion, num_classes)
 
         for m in self.modules():
@@ -400,8 +400,6 @@ class AttentionedResNet(nn.Module):
         attention = self.mlp(x)
         attention = torch.mul(1-auxiliary_attention, attention)
         x = self.fc(torch.mul(x, attention))
-        # attention = self.auxiliary_mlp(x)
-        # x = self.fc(torch.mul(x, 1 - attention))
         return x
 
     def forward(self, x):

@@ -180,9 +180,9 @@ def first_step(corr):
     trainer = pl.Trainer(accelerator='gpu', devices=-1, max_epochs=90)
     trainer.fit(model, train_bM)
 
-    trainer.save_checkpoint(f"modified_resnet18_{corr}_2.pt")
+    trainer.save_checkpoint(f"modified_resnet18_{corr}.pt")
 
-    inference_model = Main_Classifier().load_from_checkpoint(f"modified_resnet18_{corr}_2.pt", map_location=torch.device('cuda'))
+    inference_model = Main_Classifier().load_from_checkpoint(f"modified_resnet18_{corr}.pt", map_location=torch.device('cuda'))
 
     true_y, pred_y = [], []
 
@@ -224,7 +224,7 @@ def second_step(corr):
     auxiliary_model.model.mlp = nn.Sequential(nn.Linear(512, 100), nn.ReLU(), nn.Linear(100, 512), nn.Sigmoid())
     auxiliary_model.model.fc = nn.Linear(8 * 64 * 1, 3)
 
-    trainer = pl.Trainer(accelerator='gpu', devices=-1, max_epochs=20)
+    trainer = pl.Trainer(accelerator='gpu', devices=-1, max_epochs=40)
     trainer.fit(auxiliary_model, two_class)
 
     trainer.save_checkpoint(f"auxiliary_{corr}.pt")
@@ -306,8 +306,7 @@ def third_step(corr):
     print(classification_report(true_y, pred_y, digits=3))
 
 
-
 if __name__ == "__main__":
     first_step(0.9)
-    # second_step(0.9)
-    # third_step(0.9)
+    second_step(0.9)
+    third_step(0.9)
