@@ -1,16 +1,16 @@
-###################################################################################################
+#################################################################################################
 
-# Modified from https://github.com/erobic/occam-nets-v1/blob/master/models/variable_width_resnet.py
+Modified from https://github.com/erobic/occam-nets-v1/blob/master/models/variable_width_resnet.py
 
-# https://github.com/erobic/occam-nets-v1
-# @article{shrestha2022occamnets,
-#   title={OccamNets: Mitigating Dataset Bias by Favoring Simpler Hypotheses},
-#   author={Shrestha, Robik and Kafle, Kushal and Kanan, Christopher},
-#   booktitle={European Conference on Computer Vision (ECCV)},
-#   year={2022}
-# }
+https://github.com/erobic/occam-nets-v1
+@article{shrestha2022occamnets,
+  title={OccamNets: Mitigating Dataset Bias by Favoring Simpler Hypotheses},
+  author={Shrestha, Robik and Kafle, Kushal and Kanan, Christopher},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2022}
+}
 
-###################################################################################################
+#################################################################################################
 import torch
 import torch.nn as nn
 import math
