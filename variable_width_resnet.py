@@ -1,5 +1,5 @@
 #################################################################################################
-
+"""
 Modified from https://github.com/erobic/occam-nets-v1/blob/master/models/variable_width_resnet.py
 
 https://github.com/erobic/occam-nets-v1
@@ -9,7 +9,7 @@ https://github.com/erobic/occam-nets-v1
   booktitle={European Conference on Computer Vision (ECCV)},
   year={2022}
 }
-
+"""
 #################################################################################################
 import torch
 import torch.nn as nn
